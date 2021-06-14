@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<button id="btn">CLICK here</button>
+<p id="output"></p>
+
+
+<script>
+    document.getElementById("btn").addEventListener("click", getText);
+    
+    function getText(){
+    //   fetch("someTxt.txt")
+    //   .then(function(response){
+    //       return response.text();
+    //     })
+    //     .then(function(matter){
+    //         console.log(matter);
+    //     })
+
+    fetch("someTxt.txt")
+    .then((res) => res.text())
+    .then((data)=> 
+        {document.getElementById("output").innerHTML = data;
+    })
+    .catch((err) => console.log(err))
+    
+    }
+/*The major concept to fetch Api is to communicate with
+an external server using your own webpage and this is done using some functions,
+promises and among others the objective is to understand how to
+fetch APIs and other things connected to this like to kniw xhr ajax and fetch promises
+*/
+</script>
+
+
+</body>
+</html>
