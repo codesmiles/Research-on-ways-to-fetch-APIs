@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title></title>
+     <meta name="description" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="">
+ </head>
+
+ <body>
+
+     <h2 id="head">Async Jacvascript</h2>
+     <p id="para"></p>
+
+     <script>
+         let para = document.getElementById("para")
+         let header = document.getElementById('head')
+
+         // Using fetch API successfully FOR THE FIRST TIME
+         fetch(
+                 'https://firestore.googleapis.com/v1beta1/projects/exam-76c31/databases/(default)/documents/tma1_2021_2/CIT344'
+                 )
+
+             //In case a promise is returned then .then to display your promise 
+             .then((response) => {
+                 console.log("resolved", response);
+                 return response.json();
+             })
+             //  And as your promise is being displayed you can now talk about converting it or manipulating the data u fetched into what ever you want
+             .then(data => {
+                 let tma = data.fields;
+                 para.innerHTML = tma["0"].stringValue;
+                 header.innerHTML = data["name"];
+
+                 //console.log to check if the stuff works  
+                 //  console.log(data)
+
+             })
+
+             //  Will drop errors incase no data was fetched
+             .catch((err) => {
+                 console.log("rejected", err);
+             })
+
+            //  Note theres no terminate button(;) after fetch,.then and .catch because it is in form of a chain and not to be broken
+     </script>
+ </body>
+
+ </html>
